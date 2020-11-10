@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import Context from './context'
 import HeaderCart from './HeaderCart'
 import HeaderMenu from './HeaderMenu'
@@ -6,7 +6,7 @@ import HeaderMenu from './HeaderMenu'
 
 
 export default function Header() {
-    useEffect( () => console.log('Refresh'));
+
     return (
 
         <div className="header">

@@ -3,7 +3,7 @@ import Context from './context'
 import {A} from 'hookrouter';
 
 export default function HeaderMenu() {
-    useEffect( () => console.log('Refresh'));
+
 
     return (
             <ul className='menu'>

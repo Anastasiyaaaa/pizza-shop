@@ -276,14 +276,14 @@ a {
 .categories ul {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .categories ul li {
   background-color: #f9f9f9;
-  padding: 13px 30px;
   border-radius: 30px;
-  margin-right: 10px;
   font-weight: bold;
   cursor: pointer;
   -webkit-transition: background-color 0.1s ease-in-out;
@@ -292,19 +292,23 @@ a {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none
+  user-select: none;
+  width: 44%;
+  border: 2px solid #282828;
+  margin: 0 10px 30px 0;
+  text-align: center;
 }
-
-.categories ul li:hover {
-  background-color: #f4f4f4
+.categories ul li a{
+  display: block;
+  padding: 13px 30px;
 }
-
-.categories ul li:active {
-  background-color: #ececec
-}
-
+.categories ul li:hover,
 .categories ul li.active {
   background-color: #282828;
+  color: #fff
+}
+.categories ul li:hover a,
+.categories ul li.active a{
   color: #fff
 }
 

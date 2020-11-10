@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from 'react'
+import {categories} from "./db";
+import Category from "./Category";
 
 export default function Categories(){
+
     return(
         <div className="categories">
             <ul>
-                <li className="active">Все</li>
-                <li>Мясные</li>
-                <li>Вегетарианская</li>
-                <li>Гриль</li>
-                <li>Острые</li>
-                <li>Закрытые</li>
+                {categories.map((e) =><Category key={e.id} title={e.title} id={e.id} name={e.name} />)}
             </ul>
         </div>
     )
