@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import Context from './context'
 
 
@@ -9,20 +9,15 @@ import {categories} from "./db";
 
 
 export default function Main() {
-
-     const routeResult = useRoutes(Routes);
-     const [selectedCategory, setSelectedCategory] =  useState(categories[categories.length - 1].id);
-
-    console.log(selectedCategory)
+    const routeResult = useRoutes(Routes);
 
     return (
-        <Context.Provider value={{selectedCategory, setSelectedCategory}}>
+
             <div className="content">
                 <div className="container">
                     {routeResult}
                 </div>
             </div>
-        </Context.Provider>
     )
 };
 

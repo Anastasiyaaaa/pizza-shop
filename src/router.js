@@ -1,11 +1,11 @@
 
-import Pizza from "./PizzaBlock";
+import PizzaS from "./PizzaS";
 import Categories from "./Categories";
 
 
 const Routes = {
     "/": () => <Categories />,
-    "/pizza": () => <Pizza />,
-    '/pizza/:title': ({title}) => <Pizza title={title} />
+    "/pizza": () => <PizzaS />,
+    '/pizza/:title': ({title}) => <PizzaS title={title} />
 };
 export default Routes;

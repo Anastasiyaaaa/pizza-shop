@@ -1,68 +1,89 @@
 import React, {useContext, useEffect, useState} from 'react'
 import Context from './context'
 import {categories} from "./db";
+import PizzaSize from "./PizzaSize";
+import PizzaType from "./PizzaType";
+import AddPizzaButton from "./AddPizzaButton";
 
 
 
-export default function Pizza(props) {
-    let categoryID;
-    const {setSelectedCategory, selectedCategory} = useContext(Context);
-    console.log(props);
-    if (props.title !== undefined ) {
+export default function PizzaBlock(props) {
+    const {totalQuantity, setTotalQuantity, totalPrice, setTotalPrice} = useContext(Context);
+    const {imageUrl, name, types, sizes, price, category, rating, id} = props.pizza;
+    const [currQuantity, setCurrQuantity] =  useState(0);
+    const [currType, setCurrType] =  useState(0);
+    const [currSize, setCurrSize] =  useState(26);
+    const [currPrice, setCurrPrice] =  useState(price);
+    const [arr1, setArr] =  useState(props.arr);
+    const arr = props.arr;
 
-        const category = categories.find(e => e.title === props.title);
-        console.log(category);
-        categoryID = category.id
-    } else {categoryID = categories[categories.length - 1].id}
+
+
+
+    const addPizza = () =>{
+        setCurrQuantity(currQuantity + 1);
+        setTotalQuantity(totalQuantity + 1);
+        setTotalPrice(totalPrice + currPrice);
+        // setArr(arr1.push({id: id }));
+        // arr.push({id: id })
+    }
+    useEffect(() => {arr.push({id: id })}, [totalQuantity])
+    console.log(arr)
+    // +""+ currSize +""+ currType
+    const changeType = (type) =>{
+        setCurrType(type);
+    }
+    const changeSize = (size) =>{
+        setCurrSize(size);
+    }
 
     useEffect(() => {
-        setSelectedCategory(categoryID)
-    });
-    // const category = categories.find(e => e.title === property.title);
-    // console.log(categoryID)
-    // const products =
-    // console.log(categoryID);
-    console.log(categoryID);
+        switch (currSize) {
+            case 30:
+                switch (currType) {
+                    case 1:
+                        setCurrPrice(price + 15);
+                        break;
+                    default: setCurrPrice(price + 10);
+                }
+                break;
+            case 40:
+                switch (currType) {
+                    case 1:
+                        setCurrPrice(price + 20);
+                        break;
+                    default: setCurrPrice(price + 15);
+                }
+                break;
+            default:
+                switch (currType) {
+                    case 1:
+                        setCurrPrice(price + 5);
+                        break;
+                    default: setCurrPrice(price);
+            }
+        }
+    },[currSize, currType]);
+
+
     return (
-        <div className="content__items">
-            <div className="pizza-block">
-                <img
-                    className="pizza-block__image"
-                    src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-                    alt="Pizza"
-                />
-                <h4 className="pizza-block__title">Чизбургер-пицца</h4>
+        <Context.Provider value={{currQuantity, changeSize, addPizza, currSize, setCurrSize, currType, setCurrType, changeType}}>
+            <div className="pizza-block" id={id}>
+                <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+                <h4 className="pizza-block__title">{name}</h4>
                 <div className="pizza-block__selector">
                     <ul>
-                        <li className="active">тонкое</li>
-                        <li>традиционное</li>
+                        {types.map((e,i) => <PizzaType key={i} type={e}/>)}
                     </ul>
                     <ul>
-                        <li className="active">26 см.</li>
-                        <li>30 см.</li>
-                        <li>40 см.</li>
+                        {sizes.map((e,i) => <PizzaSize key={i} size={e}/>)}
                     </ul>
                 </div>
                 <div className="pizza-block__bottom">
-                    <div className="pizza-block__price">от 395 ₽</div>
-                    <div className="button button--outline button--add">
-                        <svg
-                            width="12"
-                            height="12"
-                            viewBox="0 0 12 12"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z"
-                                fill="white"
-                            />
-                        </svg>
-                        <span>Добавить</span>
-                        <i>2</i>
-                    </div>
+                    <div className="pizza-block__price">{currPrice}  ₽</div>
+                    <AddPizzaButton addPizza={addPizza}/>
                 </div>
             </div>
-        </div>
+        </Context.Provider>
     )
 }
