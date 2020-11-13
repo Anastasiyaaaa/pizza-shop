@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import Context from './context'
+import Context from './Utility/context'
 import Sort from './Sort'
-import Categories from './Categories'
+import Categories from './Categories/Categories'
 
 
 export default function Filters() {

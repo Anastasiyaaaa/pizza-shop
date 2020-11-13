@@ -1,5 +1,5 @@
 import React, {useEffect, useContext} from 'react'
-import Context from './context'
+import Context from '../Utility/context'
 
 
 export default function HeaderCart() {

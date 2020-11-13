@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react'
-import Context from './context'
+import Context from '../Utility/context'
 
 export default function AddPizzaButton() {
     const {currQuantity, addPizza} = useContext(Context);

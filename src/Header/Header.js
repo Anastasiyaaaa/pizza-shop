@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react'
-import Context from './context'
+import Context from '../Utility/context'
 import HeaderCart from './HeaderCart'
 import HeaderMenu from './HeaderMenu'
 

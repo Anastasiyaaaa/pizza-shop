@@ -372,11 +372,26 @@ a {
 }
 
 .pizza-block {
-  width: 280px;
+  display: block;
+  width: 300px;
   text-align: center;
-  margin-bottom: 65px
+  margin-bottom: 65px;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  padding: 10px 20px;
 }
-
+.pizza-block_details{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pizza-block:hover{
+  border-color: #fe5f1e;
+}
+.pizza-block_details:hover{
+  border-color: transparent;
+}
 .pizza-block:not(:nth-of-type(4n)) {
   margin-right: 35px
 }

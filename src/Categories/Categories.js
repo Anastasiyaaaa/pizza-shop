@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {categories} from "./db";
+import {categories} from "../Utility/db";
 import Category from "./Category";
 
 export default function Categories(){

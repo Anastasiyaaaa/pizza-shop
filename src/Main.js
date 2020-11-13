@@ -1,10 +1,10 @@
 import React, {useEffect, useState, useContext} from 'react'
-import Context from './context'
+import Context from './Utility/context'
 
 
-import Routes from './router'
+import Routes from './Utility/router'
 import {useRoutes} from 'hookrouter';
-import {categories} from "./db";
+import {categories} from "./Utility/db";
 
 
 
