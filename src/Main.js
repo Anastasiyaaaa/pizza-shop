@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react'
 import Context from './Utility/context'
 
-
+import {pizzas} from "./Utility/db";
 import Routes from './Utility/router'
 import {useRoutes} from 'hookrouter';
 import {categories} from "./Utility/db";
@@ -13,9 +13,10 @@ export default function Main() {
     const contextProps =  useContext(Context);
 
     //pizza start
-    const {totalQuantity, setTotalQuantity, totalPrice, setTotalPrice, cartPizza, setCartPizza} = useContext(Context);
-    const {imageUrl, name, types, sizes, price, category, rating, id} = props.pizza;
-    const [currProps, setCurrProps] =  useState();
+    const {totalQuantity, setTotalQuantity, totalPrice, setTotalPrice, cartPizza, setCartPizza, selectedCategory, setSelectedCategory} = useContext(Context);
+
+    const [currPizzaProps, setCurrProps] =  useState(pizzas[0]);
+    const {imageUrl, name, types, sizes, price, category, rating, id} = currPizzaProps;
     const [currType, setCurrType] =  useState(types.length === 2 ? 0 : types[0]);
     const [currSize, setCurrSize] =  useState(26);
     const [currPrice, setCurrPrice] =  useState(price);
@@ -47,12 +48,15 @@ export default function Main() {
     const changeSize = (size) =>{
         setCurrSize(size);
     }
-    //pizza end
 
+    useEffect(() => {
+        setCurrPrice(Math.floor(price + ((price * typeCoefficient) * currType) + ((price * sizeCoefficient) * sizeCoefficients[currSize]) ))
+    },[currSize, currType]);
+    //pizza end
 
     console.log(contextProps)
     return (
-            <Context.Provider value={{currProps, setCurrProps, contextProps}}>
+            <Context.Provider value={{setSelectedCategory, selectedCategory, currQuantity, currPrice, changeSize, addPizza, currSize, setCurrSize, currType, setCurrType, changeType, currPizzaProps, setCurrProps}} >
                 <div className="content">
                     <div className="container">
                         {routeResult}
