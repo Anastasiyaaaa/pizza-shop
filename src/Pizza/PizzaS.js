@@ -8,17 +8,20 @@ import PizzaBlock from "./PizzaBlock";
 export default function PizzaS(props) {
     const {selectedCategory, cartPizza} = useContext(Context);
     // useEffect(() => console.log(cartPizza))
+    // let pizza;
+    let pizza = pizzas.filter(e =>  e.category === selectedCategory);
 
     if (props.id !== undefined ) {
-        const newp = pizzas.map(e => e.id === props.id);
+        pizza = pizzas.filter(e => e.id === +props.id);
+    }else if (selectedCategory === 0){
+        pizza = pizzas;
     }
 
-    const pizzaForCategory = pizzas.filter(e =>  e.category === selectedCategory);
-    const pizzaMap = selectedCategory === 0 ? pizzas : pizzaForCategory;
-
+    // setPizzaMaps(selectedCategory === 0 ? pizzas : pizzaForCategory)
+console.log(pizza);
     return (
         <div className="content__items">
-            { pizzaMap.map((e,i) => <PizzaBlock key={i} pizza={e}/>) }
+            { pizza.map((e,i) => <PizzaBlock key={i} pizza={e} className={props.id !== undefined ? "pizza-block_details" : " "}/>) }
         </div>
     )
 }

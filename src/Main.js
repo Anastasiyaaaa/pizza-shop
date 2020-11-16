@@ -13,6 +13,7 @@ export default function Main() {
     const routeResult = useRoutes(Routes);
     const [detailsQuantity, setDetailsQuantity] =  useState(22);
     const [detailsPrice, setDetailsPrice] =  useState(800);
+
     // const addPizza = () =>{
     //     setCurrQuantity(currQuantity + 1);
     //     setTotalQuantity(totalQuantity + 1);
@@ -28,7 +29,7 @@ export default function Main() {
     // }
 
     return (
-        <Context.Provider value={{ detailsQuantity, setDetailsQuantity, selectedCategory, setSelectedCategory, totalPrice, setTotalPrice, totalQuantity, setTotalQuantity, cartPizza, setCartPizza, detailsPrice, setDetailsPrice}}>
+        <Context.Provider value={{detailsQuantity, setDetailsQuantity, selectedCategory, setSelectedCategory, totalPrice, setTotalPrice, totalQuantity, setTotalQuantity, cartPizza, setCartPizza, detailsPrice, setDetailsPrice}}>
             <div className="content">
                 <div className="container">
                     {routeResult}
