@@ -6,7 +6,8 @@ import PizzaBlock from "./PizzaBlock";
 
 
 export default function PizzaS(props) {
-    const {selectedCategory} = useContext(Context);
+    const {selectedCategory, cartPizza} = useContext(Context).contextProps;
+    // useEffect(() => console.log(cartPizza))
 
     if (props.id !== undefined ) {
         const newp = pizzas.map(e => e.id === props.id);

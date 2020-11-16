@@ -11,9 +11,11 @@ import PizzaPriceBlock from "./PizzaPriceBlock";
 
 
 export default function PizzaDetails(props) {
-    const {currQuantity, addPizza, currSize, setCurrSize, currType, currPrice, setCurrType} = useContext(Context);
+    const {currQuantity, addPizza, currSize, setCurrSize, currType, currPrice, setCurrType, meme} = useContext(Context);
     const {imageUrl, name, types, sizes, price, category, rating, id} = pizzas[props.id];
     console.log(currPrice, currType)
+    console.log(meme)
+
 
 
     const changeType = (type) =>{

@@ -3,7 +3,7 @@ import Context from '../Utility/context'
 
 export default function AddPizzaButton() {
     const {currQuantity, addPizza} = useContext(Context);
-
+console.log(currQuantity)
     return(
         <div onClick={() => addPizza()} className="button button--outline button--add">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" >

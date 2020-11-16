@@ -9,13 +9,18 @@ import PizzaPriceBlock from "./PizzaPriceBlock";
 
 
 export default function PizzaBlock(props) {
-    const {totalQuantity, setTotalQuantity, totalPrice, setTotalPrice, cartPizza, setCartPizza, openPizzaDetails, selectedCategory} = useContext(Context);
+
+    const {setCurrProps, totalQuantity, setTotalQuantity, totalPrice, setTotalPrice, cartPizza, setCartPizza} = useContext(Context).contextProps;
+    setCurrProps(props.pizza);
+
     const {imageUrl, name, types, sizes, price, category, rating, id} = props.pizza;
-    const [currQuantity, setCurrQuantity] =  useState(0);
+
     const [currType, setCurrType] =  useState(types.length === 2 ? 0 : types[0]);
     const [currSize, setCurrSize] =  useState(26);
     const [currPrice, setCurrPrice] =  useState(price);
 
+    const quantityWasAdded =  cartPizza.filter(e => e.id === id).reduce((acc, curr) => acc + curr.q, 0 );
+    const [currQuantity, setCurrQuantity] =  useState(quantityWasAdded || 0);
 
     const sizeCoefficients = {26: 0, 30: 1, 40: 2}
     const typeCoefficient  = 0.1;
@@ -25,12 +30,15 @@ export default function PizzaBlock(props) {
         setCurrQuantity(currQuantity + 1);
         setTotalQuantity(totalQuantity + 1);
         setTotalPrice(totalPrice + currPrice);
-        const idFull = id +""+ currSize +""+ currType;
-        const isSet = cartPizza.find(e => e.id === +idFull)
+        console.log(currQuantity)
+        const idDetails = id +""+ currSize +""+ currType;
+        const isSet = cartPizza.find(e => e.idDetails === +idDetails)
         if (isSet !== undefined) {
-            isSet.q += 1
-        } else {setCartPizza([...cartPizza, {id: +idFull, q: 1 }])}
+            isSet.q += 1;
+        } else {setCartPizza([...cartPizza, {id: id, idDetails: +idDetails, q: 1 }])}
     }
+    console.log(cartPizza)
+
 
     const changeType = (type) =>{
         setCurrType(type);
@@ -66,7 +74,7 @@ export default function PizzaBlock(props) {
                     default: setCurrPrice(price);
             }
         }*/
-        setCurrPrice(price + ((price * typeCoefficient) * currType) + ((price * sizeCoefficient) * sizeCoefficients[currSize]) )
+        setCurrPrice(Math.floor(price + ((price * typeCoefficient) * currType) + ((price * sizeCoefficient) * sizeCoefficients[currSize]) ))
     },[currSize, currType]);
     // categories[selectedCategory].title
 
