@@ -5,13 +5,15 @@ import {categories} from "../Utility/db";
 import PizzaSize from "./PizzaSize";
 import PizzaType from "./PizzaType";
 import AddPizzaButton from "./AddPizzaButton";
+import PizzaTypeSize from "./PizzaTypeSize";
+import PizzaPriceBlock from "./PizzaPriceBlock";
 
 
 
 export default function PizzaDetails(props) {
-    console.log(pizzas[props.id])
-    const {currQuantity, addPizza, currSize, setCurrSize, currType, setCurrType} = useContext(Context);
+    const {currQuantity, addPizza, currSize, setCurrSize, currType, currPrice, setCurrType} = useContext(Context);
     const {imageUrl, name, types, sizes, price, category, rating, id} = pizzas[props.id];
+    console.log(currPrice, currType)
 
 
     const changeType = (type) =>{
@@ -25,18 +27,8 @@ export default function PizzaDetails(props) {
         <div className="pizza-block pizza-block_details" id={id}>
             <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
             <h4 className="pizza-block__title">{name}</h4>
-            <div className="pizza-block__selector">
-                <ul>
-                    {types.map((e,i) => <PizzaType key={i} type={e}/>)}
-                </ul>
-                <ul>
-                    {sizes.map((e,i) => <PizzaSize key={i} size={e}/>)}
-                </ul>
-            </div>
-            <div className="pizza-block__bottom">
-                <div className="pizza-block__price">{price}  ₽</div>
-                {/*<AddPizzaButton addPizza={addPizza}/>*/}
-            </div>
+            <PizzaTypeSize types={types} sizes={sizes}/>
+            <PizzaPriceBlock currPrice={currPrice}/>
         </div>
 
     )

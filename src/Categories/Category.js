@@ -4,9 +4,9 @@ import {A} from "hookrouter";
 
 
 export default function Category(props){
-    const {selectedCategory} = useContext(Context);
-console.log(selectedCategory);
+    const {selectedCategory,setSelectedCategory} = useContext(Context);
+
     return(
-        <li className={props.id === selectedCategory ? "active" : ""}> <A href={`/pizza/${props.title}`} title={props.title}>{props.name}</A></li>
+        <li className={props.id === selectedCategory ? "active" : ""} onClick={() => setSelectedCategory(props.id)}> <A href={`/pizza/${props.title}`} title={props.title}>{props.name}</A></li>
     )
 }

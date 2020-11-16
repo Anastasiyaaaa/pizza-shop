@@ -153,7 +153,7 @@ export const pizzas =  [
             id: 15,
             imageUrl: "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/1e1a6e80-b3ba-4a44-b6b9-beae5b1fbf27.jpg",
             name: "Крэйзи пепперони",
-            types: [0],
+            types: [0, 1],
             sizes: [30, 40],
             price: 580,
             category: 2,

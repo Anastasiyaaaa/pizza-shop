@@ -6,31 +6,18 @@ import PizzaBlock from "./PizzaBlock";
 
 
 export default function PizzaS(props) {
-    console.log(props)
+    const {selectedCategory} = useContext(Context);
 
-    let categoryID;
-    const {setSelectedCategory, selectedCategory} = useContext(Context);
-
-    if (props.title !== undefined ) {
-        categoryID = (categories.find(e => e.title === props.title)).id;
-    } else {categoryID = categories[0].id}
-
-    useEffect(() => {
-        setSelectedCategory(categoryID)
-    });
     if (props.id !== undefined ) {
         const newp = pizzas.map(e => e.id === props.id);
     }
-    console.log(pizzas)
+
     const pizzaForCategory = pizzas.filter(e =>  e.category === selectedCategory);
+    const pizzaMap = selectedCategory === 0 ? pizzas : pizzaForCategory;
 
     return (
         <div className="content__items">
-            {
-                categoryID === 0 ?
-                pizzas.map((e,i) => <PizzaBlock key={i} pizza={e}/> ) :
-                pizzaForCategory.map((e,i) => <PizzaBlock key={i} pizza={e}/> )
-            }
+            { pizzaMap.map((e,i) => <PizzaBlock key={i} pizza={e}/>) }
         </div>
     )
 }
