@@ -198,3 +198,37 @@ export const categories = [
         name:  "Закрытые"
     }
 ];
+
+export const additions = [
+    {
+        id: 0,
+        title: "olives",
+        name:  "оливки",
+        price: 10
+    }, {
+        id: 1,
+        title: "tomato",
+        name:  "томаты",
+        price: 13
+    }, {
+        id: 2,
+        title: "suluguni",
+        name:  "сулугуни",
+        price: 19
+    }, {
+        id: 3,
+        title: "saliaimi",
+        name:  "салями",
+        price: 18
+    }, {
+        id: 4,
+        title: "cheeseSides",
+        name:  "сырные бортики",
+        price: 16
+    }, {
+        id: 5,
+        title: "pepper",
+        name:  "перец",
+        price: 15
+    }
+];

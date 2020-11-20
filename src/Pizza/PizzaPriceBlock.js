@@ -4,14 +4,14 @@ import AddPizzaButton from "./AddPizzaButton";
 import Context from "../Utility/context";
 
 export default function PizzaPriceBlock(props) {
-    const {addPizza, detailsPrice, detailsQuantity} = useContext(Context);
-    const {currPrice, currQuantity} = props;
+    const {addPizza, detailsPrice} = useContext(Context);
+    const {price, quantity} = props;
     console.log(props, 'currQuantityFullButton')
 
     return(
         <div className="pizza-block__bottom">
-            <div className="pizza-block__price">{currPrice === undefined ? detailsPrice : currPrice} ₽</div>
-            <AddPizzaButton currQuantity={currQuantity}/>
+            <div className="pizza-block__price">{price === undefined ? detailsPrice : price} ₽</div>
+            <AddPizzaButton add={addPizza} quantity={quantity}/>
         </div>
     )
 }

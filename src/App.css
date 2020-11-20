@@ -267,10 +267,13 @@ a {
   margin-right: 8px;
   margin-bottom: 1px
 }
-
+.button--cart span:first-child{
+  width: 50px;
+}
 .button--cart span {
   font-weight: 600;
-  font-size: 16px
+  font-size: 16px;
+  width: 20px;
 }
 
 .categories ul {

@@ -1,14 +1,19 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import Context from '../Utility/context'
 import {A} from 'hookrouter';
 
 export default function HeaderMenu() {
-    const {setSelectedCategory} = useContext(Context);
-
+    const {setSelectedCategory, setCartPizzaDetails} = useContext(Context);
+    // useEffect(() =>  );
+    // setCartPizzaDetails([])
     return (
             <ul className='menu'>
-                <li> <A href="/categories">Категории</A></li>
-                <li onClick={() => setSelectedCategory(0)}> <A href="/pizza/all">Товары</A></li>
+                <li onClick={() => setCartPizzaDetails([])}>
+                    <A href="/categories">Категории</A>
+                </li>
+                <li onClick={() => {setSelectedCategory(0); setCartPizzaDetails([])}}>
+                    <A href="/pizza/all">Товары</A>
+                </li>
             </ul>
     )
 }

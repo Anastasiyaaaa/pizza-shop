@@ -12,10 +12,11 @@ export default function App() {
     const [totalQuantity, setTotalQuantity] =  useState(0);
     const [selectedCategory, setSelectedCategory] =  useState(categories[0].id);
     const [cartPizza, setCartPizza] =  useState([]);
+    const [cartPizzaDetails, setCartPizzaDetails] =  useState([]);
 
 
     return (
-        <Context.Provider value={{selectedCategory, setSelectedCategory, totalPrice, setTotalPrice, totalQuantity, setTotalQuantity, cartPizza, setCartPizza}}>
+        <Context.Provider value={{cartPizzaDetails, setCartPizzaDetails, selectedCategory, setSelectedCategory, totalPrice, setTotalPrice, totalQuantity, setTotalQuantity, cartPizza, setCartPizza}}>
             <div className="wrapper">
                 <Header />
                 <Main />

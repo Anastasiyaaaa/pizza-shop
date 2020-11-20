@@ -1,28 +1,29 @@
 import React, {useContext, useEffect, useState} from 'react'
 import Context from '../Utility/context'
-import {categories, pizzas} from "../Utility/db";
+import {additions, categories, pizzas} from "../Utility/db";
 import AddPizzaButton from "./AddPizzaButton";
 import {A} from "hookrouter";
 import PizzaTypeSize from "./PizzaTypeSize";
 import PizzaPriceBlock from "./PizzaPriceBlock";
+import PizzaDetails from "./PizzaDetails";
+import PizzaDetailsBlock from "./PizzaDetailsBlock";
 
 
 
 export default function PizzaBlock(props) {
     // const [currQuantity, setCurrQuantity] =  useState(0);
-    const {totalQuantity, setTotalQuantity, totalPrice, setTotalPrice, cartPizza, setCartPizza, openPizzaDetails, selectedCategory} = useContext(Context);
+    const {selectedCategory, cartPizzaDetails, setCartPizzaDetails, totalQuantity, setTotalQuantity, totalPrice, setTotalPrice, cartPizza, setCartPizza} = useContext(Context);
     const {imageUrl, name, types, sizes, price, category, rating, id} = props.pizza;
 
-
-    const [currType, setCurrType] =  useState(types.length === 2 ? 0 : types[0]);
-    const [currSize, setCurrSize] =  useState(26);
+    const [detailsPriceTotal, setDetailsPriceTotal] =  useState(0);
+    const [currType, setCurrType] =  useState(types[0]);
+    const [currSize, setCurrSize] =  useState(sizes[0]);
     const [currPrice, setCurrPrice] =  useState(price);
+
 
     const currQuantityFull =  cartPizza.filter(e => e.id === id).reduce((acc, curr) => acc + curr.q, 0 );
 
     const [currQuantity, setCurrQuantity] =  useState(0);
-//     // useEffect(() => setCurrQuantity(t))
-//     setCurrQuantity(t)
 
     const sizeCoefficients = {26: 0, 30: 1, 40: 2}
     const typeCoefficient  = 0.1;
@@ -32,14 +33,27 @@ export default function PizzaBlock(props) {
         setCurrQuantity(currQuantity + 1);
         setTotalQuantity(totalQuantity + 1);
         setTotalPrice(totalPrice + currPrice);
-        console.log(currQuantity)
-        const idDetails = id +""+ currSize +""+ currType;
-        const isSet = cartPizza.find(e => e.idDetails === +idDetails)
+        console.log(currQuantity);
+
+        // const idDetailsConnect =[...cartPizzaDetails.map(e => e.id+""+e.q)]
+        const idDetailsConnect = cartPizzaDetails.reduce((acc, curr) => acc + curr.id+ "" +curr.q, '');
+        console.log(idDetailsConnect)
+
+        const idTypeSize = id +""+ currSize +""+ currType;
+        const isSet = cartPizza.find(e => e.idTypeSize === +idTypeSize && e.idDetails === idDetailsConnect)
         if (isSet !== undefined) {
-            isSet.q += 1;
-        } else {setCartPizza([...cartPizza, {id: id, idDetails: +idDetails, q: 1 }])}
+            cartPizza.map(e => {
+                if (e.idTypeSize === +idTypeSize && e.idDetails === idDetailsConnect) {
+                    e.q += 1;
+                    e.details= [...cartPizzaDetails];
+                }
+            })
+            setCartPizza([...cartPizza])
+        } else {setCartPizza([...cartPizza, {id: id, idCategory: selectedCategory, idDetails: idDetailsConnect, price: currPrice, size: currSize, type: currType, idTypeSize: +idTypeSize, q: 1, details: [...cartPizzaDetails] }])}
 
     }
+    console.log(selectedCategory)
+
     console.log(cartPizza)
 
 
@@ -51,24 +65,26 @@ export default function PizzaBlock(props) {
     }
 
 
-    useEffect(() => {
-        setCurrPrice(Math.floor(price + ((price * typeCoefficient) * currType) + ((price * sizeCoefficient) * sizeCoefficients[currSize]) ))
-    },[currSize, currType]);
-    // categories[selectedCategory].title
-    console.log(currQuantityFull, "currQuantityFull")
-    console.log(currQuantity, "currQuantity")
 
-    useEffect(() =>  setCurrQuantity(currQuantityFull))
+
+    useEffect(() => {
+        setCurrPrice(Math.floor(price + ((price * typeCoefficient) * currType) + ((price * sizeCoefficient) * sizeCoefficients[currSize]) + detailsPriceTotal ))
+    },[currSize, currType]);
+    
+    useEffect(() =>  {
+        setCurrQuantity(currQuantityFull);
+    })
     return (
-        <Context.Provider value={{changeSize, addPizza, currSize, setCurrSize, currType, setCurrType, changeType}}>
-            <div className={`pizza-block ${props.className}`}>
+        <Context.Provider value={{cartPizzaDetails, setCartPizzaDetails, detailsPriceTotal, setDetailsPriceTotal, totalPrice, setTotalPrice, changeSize, addPizza, currSize, setCurrSize, currType, setCurrType, changeType, setCurrPrice}}>
+            <div className={props.pizzaDetails ? `pizza-block pizza-block_details`: 'pizza-block' }>
                 <A href={`/pizza/${categories[category].title}/${id}`} id={id}>
                     <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
                 </A>
                 <h4 className="pizza-block__title">{name}</h4>
                 <PizzaTypeSize types={types} sizes={sizes}/>
-                <PizzaPriceBlock currPrice={currPrice} currQuantity={currQuantity}/>
+                <PizzaPriceBlock price={currPrice} quantity={currQuantity}/>
             </div>
+            { props.pizzaDetails && <PizzaDetailsBlock setCurrPrice={setCurrPrice} currPrice={currPrice} /> }
         </Context.Provider>
     )
 }
