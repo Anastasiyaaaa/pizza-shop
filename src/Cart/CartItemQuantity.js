@@ -1,10 +1,14 @@
 import React from "react";
 
 export default function CartItemQuantity(props) {
-const {cartItemQuantity} = props;
+    const {cartItemQuantity, removeItem, addItem} = props;
+    const className = cartItemQuantity === 1 ?
+        "button button--outline button--circle cart__item-count-minus disabled" :
+        "button button--outline button--circle cart__item-count-minus";
+
     return (
         <div className="cart__item-count">
-            <div className="button button--outline button--circle cart__item-count-minus">
+            <div onClick={ cartItemQuantity > 1 ? () => {removeItem()} : (e) => {e.preventDefault()} } className={className}>
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -16,7 +20,7 @@ const {cartItemQuantity} = props;
                 </svg>
             </div>
             <b>{cartItemQuantity}</b>
-            <div className="button button--outline button--circle cart__item-count-plus">
+            <div onClick={() => {addItem()}} className="button button--outline button--circle cart__item-count-plus">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                     <path

@@ -19,7 +19,7 @@ export default function CartFooter() {
                               strokeLinejoin="round" />
                     </svg>
 
-                    <span>Вернуться назад</span>
+                    <span>Вернуться к категориям</span>
                 </a>
                 <div className="button pay-btn">
                     <span>Оплатить сейчас</span>

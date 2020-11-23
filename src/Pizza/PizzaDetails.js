@@ -17,7 +17,7 @@ export default function PizzaDetails(props) {
         setDetailsQuantity(detailsQuantity + 1);
         setDetailsPriceTotal(detailsPriceTotal + price);
         setCurrPrice(currPrice + (price));
-        const idDetails = id +"";
+        const idDetails = id + "";
         const isSet = cartPizzaDetails.find(e => e.id === idDetails);
         console.log(isSet)
         console.log(idDetails)
@@ -31,7 +31,7 @@ export default function PizzaDetails(props) {
         setDetailsQuantity(detailsQuantity - 1);
         setDetailsPriceTotal(detailsPriceTotal - price);
         setCurrPrice(currPrice - (price));
-        const idDetails = id +"";
+        const idDetails = id + "";
         const isSet = cartPizzaDetails.find(e => e.id === idDetails);
         console.log(isSet)
         console.log(idDetails)

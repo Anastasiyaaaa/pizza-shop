@@ -33,10 +33,12 @@ export default function PizzaBlock(props) {
         setCurrQuantity(currQuantity + 1);
         setTotalQuantity(totalQuantity + 1);
         setTotalPrice(totalPrice + currPrice);
-        console.log(currQuantity);
+        console.log(cartPizzaDetails);
 
         // const idDetailsConnect =[...cartPizzaDetails.map(e => e.id+""+e.q)]
-        const idDetailsConnect = cartPizzaDetails.reduce((acc, curr) => acc + curr.id+ "" +curr.q, '');
+        // const idDetailsConnect = cartPizzaDetails !== [] ? cartPizzaDetails.reduce((acc, curr) => acc + curr.id+ "" +curr.q, '') : [];
+        const idDetailsConnect = cartPizzaDetails.reduce((acc, curr) => acc + curr.id+ "" +curr.q, '') || undefined;
+
         console.log(idDetailsConnect)
 
         const idTypeSize = id +""+ currSize +""+ currType;

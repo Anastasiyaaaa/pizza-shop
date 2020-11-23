@@ -11,7 +11,7 @@ export default function CartEmpty() {
             </p>
             <img src="./empty-cart.png" alt="Empty cart"/>
             <A href="/categories" className="button button--black">
-                <span>Вернуться назад</span>
+                <span>Вернуться к категориям</span>
             </A>
         </div>
     )
