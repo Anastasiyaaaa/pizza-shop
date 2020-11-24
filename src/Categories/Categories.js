@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {categories} from "../Utility/db";
 import Category from "./Category";
 

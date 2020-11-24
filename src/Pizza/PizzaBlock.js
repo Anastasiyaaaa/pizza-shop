@@ -1,19 +1,16 @@
 import React, {useContext, useEffect, useState} from 'react'
 import Context from '../Utility/context'
-import {additions, categories, pizzas} from "../Utility/db";
-import AddPizzaButton from "./AddPizzaButton";
+import {categories} from "../Utility/db";
 import {A} from "hookrouter";
 import PizzaTypeSize from "./PizzaTypeSize";
 import PizzaPriceBlock from "./PizzaPriceBlock";
-import PizzaDetails from "./PizzaDetails";
 import PizzaDetailsBlock from "./PizzaDetailsBlock";
 
 
 
 export default function PizzaBlock(props) {
-    // const [currQuantity, setCurrQuantity] =  useState(0);
     const {selectedCategory, cartPizzaDetails, setCartPizzaDetails, totalQuantity, setTotalQuantity, totalPrice, setTotalPrice, cartPizza, setCartPizza} = useContext(Context);
-    const {imageUrl, name, types, sizes, price, category, rating, id} = props.pizza;
+    const {imageUrl, name, types, sizes, price, category, id} = props.pizza;
 
     const [detailsPriceTotal, setDetailsPriceTotal] =  useState(0);
     const [currType, setCurrType] =  useState(types[0]);
@@ -33,13 +30,8 @@ export default function PizzaBlock(props) {
         setCurrQuantity(currQuantity + 1);
         setTotalQuantity(totalQuantity + 1);
         setTotalPrice(totalPrice + currPrice);
-        console.log(cartPizzaDetails);
 
-        // const idDetailsConnect =[...cartPizzaDetails.map(e => e.id+""+e.q)]
-        // const idDetailsConnect = cartPizzaDetails !== [] ? cartPizzaDetails.reduce((acc, curr) => acc + curr.id+ "" +curr.q, '') : [];
         const idDetailsConnect = cartPizzaDetails.reduce((acc, curr) => acc + curr.id+ "" +curr.q, '') || undefined;
-
-        console.log(idDetailsConnect)
 
         const idTypeSize = id +""+ currSize +""+ currType;
         const isSet = cartPizza.find(e => e.idTypeSize === +idTypeSize && e.idDetails === idDetailsConnect)
@@ -54,10 +46,6 @@ export default function PizzaBlock(props) {
         } else {setCartPizza([...cartPizza, {id: id, idCategory: selectedCategory, idDetails: idDetailsConnect, price: currPrice, size: currSize, type: currType, idTypeSize: +idTypeSize, q: 1, details: [...cartPizzaDetails] }])}
 
     }
-    console.log(selectedCategory)
-
-    console.log(cartPizza)
-
 
     const changeType = (type) =>{
         setCurrType(type);
@@ -65,9 +53,6 @@ export default function PizzaBlock(props) {
     const changeSize = (size) =>{
         setCurrSize(size);
     }
-
-
-
 
     useEffect(() => {
         setCurrPrice(Math.floor(price + ((price * typeCoefficient) * currType) + ((price * sizeCoefficient) * sizeCoefficients[currSize]) + detailsPriceTotal ))

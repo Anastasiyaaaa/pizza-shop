@@ -1,7 +1,7 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React from 'react'
 
 
-export default function PizzaMain(props) {
+export default function PizzaMain() {
     const align = {textAlign: 'center', padding: '20px 0'};
     const width = { width: "50%"}
     return(

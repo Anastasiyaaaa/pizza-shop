@@ -1,7 +1,6 @@
-import React, {useEffect, useState, useContext} from 'react'
+import React, {useContext} from 'react'
 import Context from '../Utility/context'
-import CartEmpty from "./CartEmpty";
-import CartItems from "./CartItems";
+
 
 export default function CartFooter() {
     const {totalPrice, totalQuantity} = useContext(Context);

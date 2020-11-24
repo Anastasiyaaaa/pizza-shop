@@ -1,14 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext} from 'react'
 import Context from '../Utility/context'
-import {categories, pizzas} from "../Utility/db";
+import {pizzas} from "../Utility/db";
 import PizzaBlock from "./PizzaBlock";
 
 
 
 export default function PizzaS(props) {
-    const {selectedCategory, cartPizza} = useContext(Context);
-    // useEffect(() => console.log(cartPizza))
-    // let pizza;
+    const {selectedCategory} = useContext(Context);
+
     let pizza = pizzas.filter(e =>  e.category === selectedCategory);
 
     if (props.id !== undefined ) {
@@ -17,8 +16,6 @@ export default function PizzaS(props) {
         pizza = pizzas;
     }
 
-    // setPizzaMaps(selectedCategory === 0 ? pizzas : pizzaForCategory)
-console.log(pizza);
     return (
         <div className="content__items">
             { pizza.map((e,i) => <PizzaBlock key={i} pizza={e} pizzaDetails={(props.id !== undefined) ? true : false}/>) }

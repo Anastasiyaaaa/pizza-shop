@@ -1,10 +1,8 @@
-import React, {useEffect, useState, useContext}  from 'react'
-import Context from "../Utility/context";
+import React from 'react'
 
 export default function CartItemRemove(props) {
-    const {removePizza, index, price, quantity, idDetails, idTypeSize} = props;
-    // console.log(removePizza,"removePizza" )
-    // console.log(idTypeSize,"idTypeSize" )
+    const {removePizza, price, quantity, idDetails, idTypeSize} = props;
+
     return(
         <div onClick={() => removePizza(idDetails, idTypeSize, price, quantity)} className="cart__item-remove todo">
             <div className="button button--outline button--circle">

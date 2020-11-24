@@ -1,11 +1,7 @@
-import React, {useEffect, useState, useContext} from 'react'
-import Context from '../Utility/context'
+import React from 'react'
 
 export default function AddPizzaButton(props) {
-
     const {quantity, add} = props;
-    const {currPrice, setCurrPrice, detailsPriceTotal} = useContext(Context);
-
 
     return(
         <div onClick={() => add()} className="button button--outline button--add">

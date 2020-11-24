@@ -1,15 +1,9 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext,  useState} from 'react'
 import Context from '../Utility/context'
-import {additions} from "../Utility/db";
 import AddPizzaButton from "./AddPizzaButton";
 import RemovePizzaButton from "./RemovePizzaButton";
 
-
-
-
 export default function PizzaDetails(props) {
-
-
     const [detailsQuantity, setDetailsQuantity] =  useState(0);
     const {cartPizzaDetails, setCartPizzaDetails, detailsPriceTotal, setDetailsPriceTotal, addDetails,currPrice, setCurrPrice,detailsPrice, setDetailsPrice} = useContext(Context);
     const {id, title, name, price} = props.detail;
@@ -42,10 +36,10 @@ export default function PizzaDetails(props) {
     }
 
     return (
-        <li onClick={() =>(console.log("llll"))}>
+        <li>
             <span>{name}</span>
             <AddPizzaButton add={addDetail} quantity={detailsQuantity}/>
-            <RemovePizzaButton remove={removeDetail} />
+            <RemovePizzaButton remove={removeDetail}  quantity={detailsQuantity}/>
         </li>
     )
 }

@@ -1,11 +1,9 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext} from 'react'
 import Context from '../Utility/context'
 import {A} from 'hookrouter';
 
 export default function HeaderMenu() {
     const {setSelectedCategory, setCartPizzaDetails} = useContext(Context);
-    // useEffect(() =>  );
-    // setCartPizzaDetails([])
     return (
             <ul className='menu'>
                 <li onClick={() => setCartPizzaDetails([])}>

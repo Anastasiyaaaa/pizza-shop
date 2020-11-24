@@ -14,6 +14,29 @@ export default function App() {
     const [cartPizza, setCartPizza] =  useState([]);
     const [cartPizzaDetails, setCartPizzaDetails] =  useState([]);
 
+    useEffect(()=>{
+        const pizza = localStorage.getItem('pizza') || [];
+        setCartPizza(JSON.parse(pizza));
+        const pizzaDetails = localStorage.getItem('pizzaDetails') || [];
+        setCartPizzaDetails(JSON.parse(pizzaDetails));
+        const price = localStorage.getItem('price') || 0;
+        setTotalPrice(JSON.parse(price));
+        const quantity = localStorage.getItem('quantity') || 0;
+        setTotalQuantity(JSON.parse(quantity));
+    }, [])
+
+    useEffect(()=>{
+        localStorage.setItem('pizza', JSON.stringify(cartPizza))
+    }, [cartPizza])
+    useEffect(()=>{
+        localStorage.setItem('pizzaDetails', JSON.stringify(cartPizzaDetails))
+    }, [cartPizzaDetails])
+    useEffect(()=>{
+        localStorage.setItem('price', JSON.stringify(totalPrice))
+    }, [totalPrice])
+    useEffect(()=>{
+        localStorage.setItem('quantity', JSON.stringify(totalQuantity))
+    }, [totalQuantity])
 
     return (
         <Context.Provider value={{cartPizzaDetails, setCartPizzaDetails, selectedCategory, setSelectedCategory, totalPrice, setTotalPrice, totalQuantity, setTotalQuantity, cartPizza, setCartPizza}}>
