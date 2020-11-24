@@ -13,22 +13,19 @@ export default function PizzaDetails(props) {
         setCurrPrice(currPrice + (price));
         const idDetails = id + "";
         const isSet = cartPizzaDetails.find(e => e.id === idDetails);
-        console.log(isSet)
-        console.log(idDetails)
         if (isSet !== undefined) {
             isSet.q += 1;
         } else {setCartPizzaDetails([...cartPizzaDetails, {id: idDetails, q: 1 }])}
 
     }
-    console.log(cartPizzaDetails)
+
     const removeDetail = () =>{
         setDetailsQuantity(detailsQuantity - 1);
         setDetailsPriceTotal(detailsPriceTotal - price);
         setCurrPrice(currPrice - (price));
         const idDetails = id + "";
         const isSet = cartPizzaDetails.find(e => e.id === idDetails);
-        console.log(isSet)
-        console.log(idDetails)
+
         if (isSet !== undefined) {
             isSet.q -= 1;
         } else {setCartPizzaDetails([...cartPizzaDetails, {id: idDetails, q: 1 }])}
