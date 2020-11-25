@@ -279,7 +279,7 @@ a {
 }
 .button--cart span {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
   width: 20px;
 }
 
@@ -444,6 +444,7 @@ a {
 }
 
 .pizza-block__selector ul li {
+  text-align: center;
   padding: 8px;
   -webkit-box-flex: 1;
   -ms-flex: 1;

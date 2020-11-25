@@ -1,13 +1,13 @@
 import React, {useEffect, useState, useContext}  from 'react'
-import Context from "../Utility/context";
-import {categories, pizzas} from "../Utility/db";
+import Context from "../utility/context";
+import {categories, pizzas} from "../utility/db";
 import CartItemQuantity from "./CartItemQuantity";
 import CartItemRemove from "./CartItemRemove";
 import {A} from "hookrouter";
 import CartItemDetails from "./CartItemDetails";
 
 export default function CartItemBlock(props) {
-    const {cartPizza, setTotalQuantity, totalQuantity, setTotalPrice, totalPrice} = useContext(Context);
+    const {cartPizza, setCartPizza, setTotalQuantity, totalQuantity, setTotalPrice, totalPrice} = useContext(Context);
 
 
     const { details, id, idCategory, idDetails, idTypeSize, price, q, size, type} = props.pizza;
@@ -32,9 +32,10 @@ export default function CartItemBlock(props) {
                 e.q = cartItemQuantity;
             }
         })
+        localStorage.setItem('pizza', JSON.stringify(cartPizza))
     }, [cartItemQuantity])
 
-
+    console.log(cartPizza)
 
     return (
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {categories} from "../Utility/db";
+import {categories} from "../utility/db";
 import Category from "./Category";
 
 export default function Categories(){

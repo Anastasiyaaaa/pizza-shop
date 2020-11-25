@@ -1,9 +1,9 @@
 import React, {useEffect, useState, useContext} from 'react'
-import Context from './Utility/context'
+import Context from './utility/context'
 import './App.css';
-import Header from './Header/Header';
+import Header from './header/Header';
 import Main from './Main';
-import {categories, pizzas} from "./Utility/db";
+import {categories, pizzas} from "./utility/db";
 
 
 

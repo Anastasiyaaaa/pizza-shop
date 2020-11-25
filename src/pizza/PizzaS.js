@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
-import Context from '../Utility/context'
-import {pizzas} from "../Utility/db";
+import Context from '../utility/context'
+import {pizzas} from "../utility/db";
 import PizzaBlock from "./PizzaBlock";
 
 
@@ -18,7 +18,7 @@ export default function PizzaS(props) {
 
     return (
         <div className="content__items">
-            { pizza.map((e,i) => <PizzaBlock key={i} pizza={e} pizzaDetails={(props.id !== undefined) ? true : false}/>) }
+            { pizza.map((e,i) => <PizzaBlock key={i} pizza={e} pizzaDetails={(props.id !== undefined)}/>) }
         </div>
     )
 }

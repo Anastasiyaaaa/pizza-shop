@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
-import Context from './Utility/context'
+import Context from './utility/context'
 
-import Routes from './Utility/router'
+import Routes from './utility/router'
 import {useRoutes} from 'hookrouter';
 
 

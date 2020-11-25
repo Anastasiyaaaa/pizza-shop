@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import Context from '../Utility/context'
+import Context from '../utility/context'
 
 
 export default function CartFooter() {

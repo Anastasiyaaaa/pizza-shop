@@ -1,5 +1,5 @@
 import React from 'react'
-import {additions} from "../Utility/db";
+import {additions} from "../utility/db";
 
 export default function CartItemDetails(props) {
     const {detail} = props;

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import Context from '../Utility/context'
+import Context from '../utility/context'
 
 export default function CartHeader() {
     const {setCartPizzaDetails, setTotalPrice, setTotalQuantity, setCartPizza} = useContext(Context);

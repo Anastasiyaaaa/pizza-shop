@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react'
-import Context from '../Utility/context'
-import {additions} from "../Utility/db";
+import Context from '../utility/context'
+import {additions} from "../utility/db";
 import PizzaDetails from "./PizzaDetails";
 
 export default function PizzaDetailsBlock(props) {

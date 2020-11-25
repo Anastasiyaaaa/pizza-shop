@@ -1,9 +1,9 @@
 
-import PizzaS from "../Pizza/PizzaS";
-import Categories from "../Categories/Categories";
-import PizzaBlock from "../Pizza/PizzaBlock";
-import PizzaMain from "../Pizza/PizzaMain";
-import CartPage from "../Cart/CartPage";
+import PizzaS from "../pizza/PizzaS";
+import Categories from "../categories/Categories";
+import PizzaBlock from "../pizza/PizzaBlock";
+import PizzaMain from "../pizza/PizzaMain";
+import CartPage from "../cart/CartPage";
 
 
 const Routes = {

@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
-import Context from '../Utility/context'
-import {categories} from "../Utility/db";
+import Context from '../utility/context'
+import {categories} from "../utility/db";
 import {A} from "hookrouter";
 import PizzaTypeSize from "./PizzaTypeSize";
 import PizzaPriceBlock from "./PizzaPriceBlock";
@@ -44,6 +44,9 @@ export default function PizzaBlock(props) {
             })
             setCartPizza([...cartPizza])
         } else {setCartPizza([...cartPizza, {id: id, idCategory: selectedCategory, idDetails: idDetailsConnect, price: currPrice, size: currSize, type: currType, idTypeSize: +idTypeSize, q: 1, details: [...cartPizzaDetails] }])}
+        console.log(cartPizzaDetails)
+        console.log(idDetailsConnect)
+        console.log(idTypeSize)
 
     }
 

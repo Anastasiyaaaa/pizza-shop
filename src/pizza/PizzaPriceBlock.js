@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import AddPizzaButton from "./AddPizzaButton";
-import Context from "../Utility/context";
+import Context from "../utility/context";
 
 export default function PizzaPriceBlock(props) {
     const {addPizza, detailsPrice} = useContext(Context);
