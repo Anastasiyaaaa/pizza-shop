@@ -1,4 +1,6 @@
 # Getting Started with Create React App
+//    "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
+"build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js"
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
