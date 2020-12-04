@@ -14,23 +14,37 @@ export default function PizzaDetails(props) {
         setCurrPrice(currPrice + (price));
         const idDetails = id + "";
         const isSet = cartPizzaDetails.find(e => e.id === idDetails);
-        if (isSet !== undefined) {
-            isSet.q += 1;
-        } else {setCartPizzaDetails([...cartPizzaDetails, {id: idDetails, q: 1 }])}
-
+        console.log(isSet)
+        if (isSet === undefined) {
+            console.log(cartPizzaDetails)
+            setCartPizzaDetails([...cartPizzaDetails, {id: idDetails, q: 1 }])
+        }else{
+            setCartPizzaDetails(cartPizzaDetails.map( e => {
+                if (e.id === idDetails){
+                    e.q += 1
+                }
+                return e
+            }))
+        }
     }
 
+    console.log(cartPizzaDetails)
     const removeDetail = () =>{
         setDetailsQuantity(detailsQuantity - 1);
         setDetailsPriceTotal(detailsPriceTotal - price);
         setCurrPrice(currPrice - (price));
-        const idDetails = id + "";
-        const isSet = cartPizzaDetails.find(e => e.id === idDetails);
-
-        if (isSet !== undefined) {
-            isSet.q -= 1;
-        } else {setCartPizzaDetails([...cartPizzaDetails, {id: idDetails, q: 1 }])}
-
+        const idDetails = id + ""; // e.id === idDetails console.log(e)
+        console.log(detailsQuantity)
+        if (detailsQuantity <= 1){
+            setCartPizzaDetails( cartPizzaDetails.filter(e => e.id !== idDetails));
+        }else{
+            setCartPizzaDetails(cartPizzaDetails.map( e => {
+                if (e.id === idDetails){
+                    e.q -= 1
+                }
+                return e
+            }))
+        }
     }
 
     return (
